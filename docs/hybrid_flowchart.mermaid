@@ -1,0 +1,16 @@
+flowchart TD
+    A[User question] --> B{Question type?}
+    B -->|General career knowledge| C[Chatbot Baseline Path]
+    C --> D[Answer from general LLM knowledge]
+    B -->|Personalized career fit| E[ReAct Agent Path]
+    E --> F[assess_career_fit]
+    F --> G{Need learning path?}
+    G -->|Yes| H[suggest_learning_path]
+    G -->|No| I[Final Answer]
+    H --> I
+    B -->|Unrealistic guarantee or unsafe claim| J[Guardrail Path]
+    J --> K[check_goal_realism]
+    K --> L[Safe fallback answer]
+    I --> M[Trace log and evaluation]
+    D --> M
+    L --> M
